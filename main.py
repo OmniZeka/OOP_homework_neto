@@ -26,6 +26,15 @@ class Lecturer(Mentor):
     def __str__(self):
         return f"Имя: {self.name}\nФамилия: {self.surname}\nCредняя оценка за лекции: {self.middle_rating()}"
 
+    def __lt__(self, other):
+        return self.middle_rating() < other.middle_rating()
+
+    def __gt__(self, other):
+        return self.middle_rating() > other.middle_rating()
+
+    def __eq__(self, other):
+        return self.middle_rating() == other.middle_rating()
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -74,6 +83,15 @@ class Student:
         return (f'Имя: {self.name}\nФамилия: {self.surname}\n'
                 f'Cредняя оценка за домашние задания: {self.middle_rating()}\n'
                 f'Курсы в процессе обучения:{self.course_in_progress}\nЗавершенные курсы:{self.finished_courses}')
+
+    def __lt__(self, other):
+        return self.middle_rating() < other.middle_rating()
+
+    def __gt__(self, other):
+        return self.middle_rating() > other.middle_rating()
+
+    def __eq__(self, other):
+        return self.middle_rating() == other.middle_rating()
 
 
 def calculate_average_homework_grade(students, course):
@@ -150,6 +168,6 @@ print(f'Средняя оценка среди лекторов: {calculate_aver
 print('-------------------------------------------')
 print(f'Средняя оценка среди студентов: {calculate_average_lecture_grade([some_lecture, some_lecture_1], 'JAVA')}')
 print('-------------------------------------------')
-print(some_lecture.middle_rating() > some_lecture_1.middle_rating())
+print(some_lecture > some_lecture_1)
 print('-------------------------------------------')
-print(some_student.middle_rating() < some_student_1.middle_rating())
+print(some_student == some_student_1)
